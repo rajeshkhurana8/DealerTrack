@@ -1,0 +1,44 @@
+﻿@model IEnumerable<vehicalSalesData>
+@{
+    Layout = null;
+}
+
+<form asp-controller="Sales" asp-action="Index" method="post" enctype="multipart/form-data">
+    <label>Please upload .csv file</label>
+    <br />
+    <input type="file" name="file" />
+    <hr />
+    <button type="submit">Upload</button>
+</form>
+
+@if (Model.Count() > 0)
+{
+    <table cellpadding="0" cellspacing="0" border="1">
+        <tr>
+            <td>@Html.Label("Most Often Sold Vehicle: ")</td>
+            <td>@ViewBag.MostOftenSoldVehicle</td>
+        </tr>
+    </table>
+    <hr />
+    <table cellpadding="0" cellspacing="0" border="1">
+        <tr>
+            <td>DealNumber</td>
+            <td>CustomerName</td>
+            <td>DealershipName</td>
+            <td>Vehicle</td>
+            <td>Price</td>
+            <td>Date</td>
+        </tr>
+        @foreach (vehicalSalesData data in Model)
+        {
+            <tr>
+                <td>@data.DealNumber</td>
+                <td>@data.CustomerName</td>
+                <td>@data.DealershipName</td>
+                <td>@data.Vehicle</td>
+                <td>@data.Price</td>
+                <td>@data.Date</td>
+            </tr>
+        }
+    </table>
+}
